@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180313021603) do
+ActiveRecord::Schema.define(version: 20180414163110) do
+
+  create_table "age_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_age_groups_on_name", unique: true, using: :btree
+  end
 
   create_table "article_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -29,6 +36,24 @@ ActiveRecord::Schema.define(version: 20180313021603) do
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.index ["article_category_id"], name: "index_articles_on_article_category_id", using: :btree
+  end
+
+  create_table "caregivers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "email",            null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address_line_one"
+    t.string   "address_line_two"
+    t.string   "city"
+    t.string   "province"
+    t.string   "country"
+    t.string   "postal_code"
+    t.string   "work_phone"
+    t.string   "house_phone"
+    t.string   "mobile_phone"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["email"], name: "index_caregivers_on_email", unique: true, using: :btree
   end
 
   create_table "fae_changes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -177,6 +202,54 @@ ActiveRecord::Schema.define(version: 20180313021603) do
     t.index ["reset_password_token"], name: "index_fae_users_on_reset_password_token", unique: true, using: :btree
     t.index ["role_id"], name: "index_fae_users_on_role_id", using: :btree
     t.index ["unlock_token"], name: "index_fae_users_on_unlock_token", unique: true, using: :btree
+  end
+
+  create_table "patient_questionnaires", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "patient_id",       null: false
+    t.integer  "questionnaire_id", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["patient_id"], name: "index_patient_questionnaires_on_patient_id", using: :btree
+    t.index ["questionnaire_id"], name: "index_patient_questionnaires_on_questionnaire_id", using: :btree
+  end
+
+  create_table "patients", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "first_name",                                  null: false
+    t.string   "last_name",                                   null: false
+    t.decimal  "weight",                       precision: 10
+    t.date     "birthdate"
+    t.integer  "age_group_id",                                null: false
+    t.text     "caregiver_note", limit: 65535
+    t.text     "doctor_note",    limit: 65535
+    t.text     "hidden_note",    limit: 65535
+    t.integer  "caregiver_id",                                null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.index ["age_group_id"], name: "index_patients_on_age_group_id", using: :btree
+    t.index ["caregiver_id"], name: "index_patients_on_caregiver_id", using: :btree
+  end
+
+  create_table "questionnaire_responses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "questionnaire_id", null: false
+    t.integer  "patient_id",       null: false
+    t.date     "date",             null: false
+    t.json     "response",         null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["patient_id", "date"], name: "by_patient_and_date", using: :btree
+    t.index ["patient_id"], name: "index_questionnaire_responses_on_patient_id", using: :btree
+    t.index ["questionnaire_id"], name: "index_questionnaire_responses_on_questionnaire_id", using: :btree
+  end
+
+  create_table "questionnaires", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",         null: false
+    t.string   "file_path",    null: false
+    t.integer  "age_group_id", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["age_group_id"], name: "index_questionnaires_on_age_group_id", using: :btree
+    t.index ["file_path"], name: "index_questionnaires_on_file_path", unique: true, using: :btree
+    t.index ["name"], name: "index_questionnaires_on_name", unique: true, using: :btree
   end
 
   add_foreign_key "articles", "article_categories"
