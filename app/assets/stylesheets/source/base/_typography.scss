@@ -1,0 +1,27 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $font-base;
+  font-size: 1.4rem;
+  line-height: 1.1428571429;
+}
+
+button,
+.button {
+  cursor: pointer;
+  color: $color-white;
+  background-color: $color-primary;
+  border: 0;
+  display: flex;
+  align-items: center;
+  padding: $padding-viewport/2 $padding-viewport;
+  font-size: $font-size-medium;
+  font-weight: 500;
+
+  &.button--small {
+    font-size: $font-size-small;
+    padding: $padding-viewport/4 $padding-viewport/2;
+  }
+}

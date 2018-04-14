@@ -1,0 +1,24 @@
+.data-point {
+  background-color: $color-white;
+  border: 1px solid $color-primary;
+  margin-bottom: $padding-viewport/2;
+  padding: $padding-viewport/4;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.data-point__form {
+  display: flex;
+  margin: 0;
+}
+
+.data-point__input-wrapper {
+  display: flex;
+  margin-right: $padding-viewport/2;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
