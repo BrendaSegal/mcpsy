@@ -1,0 +1,26 @@
+label {
+  color: $color-primary;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+input {
+  background-color: transparent;
+  border-color: $color-black;
+  font-size: 1.4rem;
+  line-height: 1;
+  outline: 0;
+  padding: 1.6rem 0 .2rem;
+
+  &:focus {
+    border-color: $color-primary;
+  }
+}
+
+textarea {
+  background-color: transparent;
+  padding: 1.6rem 0;
+  outline: 0;
+  resize: none;
+  width: 100%;
+}

@@ -8,6 +8,7 @@
 /.bundle
 
 # Ignore all logfiles and tempfiles.
+*.log
 /log/*
 /tmp/*
 !/log/.keep
@@ -15,3 +16,9 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore Node Modules
+*node_modules/*
+
+# Ignore Mac Generated Files
+*DS_Store*
