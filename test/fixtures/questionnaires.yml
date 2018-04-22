@@ -1,0 +1,24 @@
+baby_sleeping:
+  age_group: baby
+  name: sleeping
+  file_path: assets/questionnaires/baby/sleeping.json
+
+baby_feeding:
+  age_group: baby
+  name: feeding
+  file_path: assets/questionnaires/baby/feeding.json
+
+toddler_feeding:
+  age_group: toddler
+  name: feeding
+  file_path: assets/questionnaires/toddler/feeding.json
+
+toddler_sleeping:
+  age_group: toddler
+  name: sleeping
+  file_path: assets/questionnaires/toddler/sleeping.json
+
+school_age_sleeping:
+  age_group: school_age
+  name: sleeping
+  file_path: assets/questionnaires/school_age/sleeping.json

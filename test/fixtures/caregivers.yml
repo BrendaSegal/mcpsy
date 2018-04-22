@@ -1,0 +1,47 @@
+kanga:
+  email: kanga@roo.haw
+  first_name: Kanga
+  last_name: Roo
+  address_line_one: 100 Acre Wood
+  address_line_two:
+  city: Poohtown
+  province: Derbyshire
+  country: England
+  postal_code: h2c8d8
+  work_phone: 514-222-3333
+  house_phone:
+  mobile_phone: 514-222-3333
+  created_at: 2018-04-23 12:00:00
+  updated_at: 2018-04-23 12:00:00
+
+wilma:
+  email: wilma@bedrock.com
+  first_name: Wilma
+  last_name: Flintstone
+  address_line_one: 
+  address_line_two:
+  city: Bedrock
+  province:
+  country: United States
+  postal_code: m9c1p9
+  work_phone:
+  house_phone:
+  mobile_phone: 5142221111
+  created_at: 2018-04-23 12:00:00
+  updated_at: 2018-04-23 12:00:00
+
+bob:
+  email: bob@bogsburgers.com
+  first_name: Bob
+  last_name: Belcher
+  address_line_one: Bob's Burgers
+  address_line_two: unit 2
+  city: Toronto
+  province: Ontario
+  country: Canada
+  postal_code: h2r0m2
+  work_phone: 514-222-3335
+  house_phone:
+  mobile_phone: 514-222-3335
+  created_at: 2018-04-23 12:00:00
+  updated_at: 2018-04-23 12:00:00

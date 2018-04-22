@@ -1,0 +1,142 @@
+{
+  "visibleResponses": [
+    {
+      "date": "10-01-2018",
+      "questionnaireResponseId": 204186,
+      "questionnaireName": "Sleep - Night",
+      "values": {
+      }
+    },
+  ],
+  "questionnaire": {
+    "name": "Whatever",
+    "parentForm": "Sleep - Night",
+  },
+  "forms": [
+    {
+      "formName": "Sleep - Night",
+      "inputs": [
+        {
+          "name": "timeToSleep",
+          "label": "Time they went to sleep",
+          "type": "select",
+          "options": {
+            "9:30AM": "9:30AM",
+          }
+        },
+        {
+          "name": "testingTextInput",
+          "label": "Testing Text Input",
+          "type": "text",
+        },
+        {
+          "name": "testingNumberInput",
+          "label": "Testing Number Input",
+          "type": "number",
+        },
+        {
+          "name": "testingDateInput",
+          "label": "Testing Date Input",
+          "type": "date",
+        },
+        {
+          "name": "whenTheyFellAsleep",
+          "label": "When they fell asleep",
+          "type": "select",
+          "options": {
+            "9:30AM": "9:30AM",
+          }
+        },
+        {
+          "name": "whenTheyWokeUp",
+          "label": "When they woke up",
+          "type": "select",
+          "options": {
+            "9:30AM": "9:30AM",
+          }
+        },
+        {
+          "name": "nightWakings",
+          "label": "Number of Night Wakings",
+          "type": "number",
+          "defaultValue": 0,
+          "children": [
+            {
+              "childForm": "Night Wakings",
+            },
+          ]
+        }
+      ]
+    },
+    {
+      "formName": "Night Wakings",
+      "inputs": [
+        {
+          "name": "whenTheyWokeUp",
+          "label": "When they woke up",
+          "type": "select",
+          "options": {
+            "9:30PM": "21:30",
+          }
+        },
+        {
+          "name": "durationAwake",
+          "label": "How long they were awake",
+          "type": "select",
+          "options": {
+            "15 minutes": "15",
+          }
+        },
+        {
+          "name": "careGiverIntervention",
+          "label": "Care Giver Intervention",
+          "type": "select",
+          "options": {
+            "No Intervention": "No Intervention",
+            "Feeding": "Feeding",
+            "Parent Intervention w/o Feeding": "Parent Intervention w/o Feeding",
+            "Other": "Other"
+          },
+          "children": [
+            {
+              "childForm": "Night Wakings Feeding",
+              "parentValue": "Feeding",
+            }
+          ]
+        },
+      ]
+    },
+    {
+      "formName": "Night Wakings Feeding",
+      "inputs": [
+        {
+          "type": "select",
+          "label": "Breastfeeding duration",
+          "name": "breastFeedingDuration",
+          "options": {
+            "No breastfeeding": "0",
+            "1 minute": "1",
+            "2 minute": "2",
+            "3 minute": "3",
+            "4 minute": "4",
+          }
+        },
+        {
+          "type": "number",
+          "label": "Quantity of formula",
+          "defaultValue": 0,
+          "name": "quantityOfFormula"
+        },
+        {
+          "type": "select",
+          "label": "unit",
+          "name": "formulaUnit",
+          "options": {
+            "ml": "ml",
+            "oz": "oz",
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180414163110) do
+ActiveRecord::Schema.define(version: 20180506173013) do
 
   create_table "age_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -209,6 +209,7 @@ ActiveRecord::Schema.define(version: 20180414163110) do
     t.integer  "questionnaire_id", null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.index ["patient_id", "questionnaire_id"], name: "index_patient_questionnaires_on_patient_id_and_questionnaire_id", unique: true, using: :btree
     t.index ["patient_id"], name: "index_patient_questionnaires_on_patient_id", using: :btree
     t.index ["questionnaire_id"], name: "index_patient_questionnaires_on_questionnaire_id", using: :btree
   end
@@ -218,7 +219,7 @@ ActiveRecord::Schema.define(version: 20180414163110) do
     t.string   "last_name",                                   null: false
     t.decimal  "weight",                       precision: 10
     t.date     "birthdate"
-    t.integer  "age_group_id",                                null: false
+    t.integer  "age_group_id"
     t.text     "caregiver_note", limit: 65535
     t.text     "doctor_note",    limit: 65535
     t.text     "hidden_note",    limit: 65535
@@ -249,7 +250,7 @@ ActiveRecord::Schema.define(version: 20180414163110) do
     t.datetime "updated_at",   null: false
     t.index ["age_group_id"], name: "index_questionnaires_on_age_group_id", using: :btree
     t.index ["file_path"], name: "index_questionnaires_on_file_path", unique: true, using: :btree
-    t.index ["name"], name: "index_questionnaires_on_name", unique: true, using: :btree
+    t.index ["name", "age_group_id"], name: "index_questionnaires_on_name_and_age_group_id", unique: true, using: :btree
   end
 
   add_foreign_key "articles", "article_categories"

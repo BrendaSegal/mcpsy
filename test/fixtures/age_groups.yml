@@ -1,0 +1,14 @@
+baby:
+  name: baby
+  created_at: 2018-04-23 12:00:00
+  updated_at: 2018-04-23 12:00:00
+
+toddler:
+  name: toddler
+  created_at: 2018-04-23 12:00:00
+  updated_at: 2018-04-23 12:00:00
+
+school_age:
+  name: school age
+  created_at: 2018-04-23 12:00:00
+  updated_at: 2018-04-23 12:00:00
