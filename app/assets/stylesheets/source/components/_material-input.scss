@@ -1,6 +1,27 @@
 .material-input {
+  border-bottom: 1px solid $color-neutral1;
   padding-top: 1rem;
   position: relative;
+  width: 100%;
+
+  &::after {
+    content: '';
+    left: 0;
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background-color: $color-primary;
+    transform: scale(0);
+    transition: transform $transition;
+    z-index: 2;
+  }
+
+  &:focus-within {
+    &::after {
+      transform: scale(1);
+    }
+  }
 }
 
 .material-input__label {
@@ -10,11 +31,13 @@
   bottom: .8rem;
   left: 0;
   transition: font-size $transition, bottom $transition;
+  pointer-events: none;
 
   .material-input__input.has-value + &,
+  .material-input__select.has-value + &,
   .material-input__input[type='date'] + &,
   .material-input__input:focus + & {
-    bottom: 2.4rem;
+    bottom: 2.6rem;
     cursor: default;
     font-size: $font-size-small;
     pointer-events: none;
@@ -27,10 +50,17 @@
 }
 
 .material-input__input {
+  padding-top: 2.2rem;
+  padding-bottom: .8rem;
+}
+
+.material-input__input,
+.material-input__select {
   border: 0;
-  border-bottom: 1px solid $color-neutral1;
+  display: block;
   position: relative;
   transition: border-color $transition;
+  width: 100%;
   z-index: 1;
 
   &.has-value,
@@ -44,4 +74,24 @@
  &:-moz-placeholder {
     opacity: .7;
   }
+}
+
+.material-input__select {
+  display: block;
+  padding-left: 0;
+  padding-right: 26px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  width: 100%;
+  padding-top: 2.2rem;
+  padding-bottom: .8rem;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  background-color: transparent;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
