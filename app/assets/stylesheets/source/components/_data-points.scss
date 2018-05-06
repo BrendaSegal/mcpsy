@@ -1,0 +1,5 @@
+.data-points {
+  border: 1px solid $color-primary;
+  padding: $padding-viewport;
+  background-color: lighten($color-primary, 50%);
+}

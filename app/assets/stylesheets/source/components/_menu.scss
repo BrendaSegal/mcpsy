@@ -1,0 +1,23 @@
+.menu {
+  &--with-bg {
+    background-color: $color-primary;
+  }
+
+  &--limited {
+    width: 320px;
+    z-index: 2;
+  }
+}
+
+.menu__toggler {
+  align-items: center;
+  display: flex;
+}
+
+.menu__icon {
+  margin-right: $padding-viewport;
+}
+
+.menu__text {
+
+}

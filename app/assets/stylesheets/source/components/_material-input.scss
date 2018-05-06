@@ -1,0 +1,47 @@
+.material-input {
+  padding-top: 1rem;
+  position: relative;
+}
+
+.material-input__label {
+  cursor: text;
+  position: absolute;
+  z-index: 2;
+  bottom: .8rem;
+  left: 0;
+  transition: font-size $transition, bottom $transition;
+
+  .material-input__input.has-value + &,
+  .material-input__input[type='date'] + &,
+  .material-input__input:focus + & {
+    bottom: 2.4rem;
+    cursor: default;
+    font-size: $font-size-small;
+    pointer-events: none;
+  }
+
+  textarea + & {
+    bottom: auto;
+    top: 1.6rem;
+  }
+}
+
+.material-input__input {
+  border: 0;
+  border-bottom: 1px solid $color-neutral1;
+  position: relative;
+  transition: border-color $transition;
+  z-index: 1;
+
+  &.has-value,
+  &:focus {
+    border-color: $color-primary;
+  }
+
+ &::-webkit-input-placeholder,
+ &::-moz-placeholder,
+ &:-ms-input-placeholder,
+ &:-moz-placeholder {
+    opacity: .7;
+  }
+}

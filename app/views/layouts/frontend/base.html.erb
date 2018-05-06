@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mcpsy</title>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <header id="header"></header>
+
+    <main class="main">
+      <h1>Style Guide</h1> <!--This will be a partial with the page title -->
+      <%= yield %>
+    </main>
+
+    <footer>
+      Footer
+    </footer>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'  %>
+  </body>
+</html>

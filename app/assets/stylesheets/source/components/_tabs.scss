@@ -1,0 +1,30 @@
+.tabs {
+  margin-bottom: $padding-viewport;
+}
+
+.tabs__row {
+  display: flex;
+}
+
+.tabs__tab {
+  display: flex;
+  flex-grow: 1;
+}
+
+.tabs__button {
+  background: none;
+  background-color: #a0a0a0;
+  border-radius: 0;
+  border: 0;
+  display: block;
+  font-size: $font-size-medium;
+  opacity: .7;
+  outline: 0;
+  padding: 1rem 2rem;
+  width: 100%;
+
+  &.is-active {
+    opacity: 1;
+    background-color: var(--tab-color);
+  }
+}
