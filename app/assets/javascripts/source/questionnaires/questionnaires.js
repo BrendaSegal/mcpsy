@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import dateFormat from 'dateformat';
+import Questionnaire from './questionnaire.js';
+import Title from './title.js';
 import uuid from 'uuid';
 
-class Questionnaires extends React.Component {
+export default class Questionnaires extends React.Component {
   constructor(props) {
     super(props);
 
@@ -17,15 +17,6 @@ class Questionnaires extends React.Component {
           "values": {
             "testingTextInput" : "test",
             "nightWakings" : 3,
-          }
-        },
-        {
-          "date": "10-01-2018",
-          "questionnaireName": "Sleep - Night",
-          "questionnaireKey": uuid(),
-          "values": {
-            "testingTextInput": "check it out!",
-            "testingNumberInput": "5",
           }
         },
       ],
@@ -218,179 +209,3 @@ class Questionnaires extends React.Component {
     )
   }
 }
-
-class Title extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <h1>{this.props.title}</h1>
-    )
-  }
-}
-
-class Questionnaire extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  getForm(formToUse) {
-    return this.props.forms.find(form => {
-      return form.formName === formToUse;
-    });
-  }
-
-  renderChildren = (parentInput, form, idx) => {
-    const count = this.props.questionnaireDetails.values[parentInput.name];
-    let children = [];
-
-    if ( typeof parseInt(count) === 'number' && count ) {
-      for (var i = 0; i < count; i++) {
-        children.push(<div key={`child-${idx}-${i}  `} className="questionnaire__child">{this.renderForm(form)}</div>);
-      }
-
-      return children;
-    }
-
-    return false;
-  }
-
-  renderForm(formTouse = this.props.questionnaireDetails.questionnaireName) {
-    return this.getForm(formTouse).inputs.map((input, idx) => {
-      if (!!input.children) {
-        return (
-          <div className="questionnaire__combination" key={`combo-${idx}`}>
-            <div key={`parent-${idx}`} className="questionnaire__parent">{this.renderInput(input, idx)}</div>
-            {this.renderChildren(input, input.children[0].childForm, idx)}
-          </div>
-        )
-      }
-
-      return this.renderInput(input, idx);
-    })
-  }
-
-  renderInput = (input, idx) => {
-    let inputToRender;
-    const value = this.props.questionnaireDetails.values[input.name];
-
-    switch (input.type) {
-      case 'select':
-        inputToRender = (
-          <Select
-            name={input.name}
-            defaultValue={value}
-            key={`input-${idx}`}
-          />
-        );
-        break;
-
-      default:
-        inputToRender = (
-          <Input
-            type={input.type}
-            defaultValue={value}
-            name={input.name}
-            key={`input-${idx}`}
-          />
-        );
-        break;
-    }
-
-    return (
-      <div className="questionnaire__input-wrapper" key={`wrapper-${idx}`}>
-        <div className="material-input" key={`material-${idx}`}>
-          {inputToRender}
-          <Label for={input.name} textContent={input.label} key={`label-${idx}`} />
-        </div>
-      </div>
-    )
-  }
-
-  handleChange = (e) => {
-    this.props.handleChange(e, this.props.questionnaireDetails.questionnaireKey);
-  }
-
-  render() {
-    return (
-      <form className="questionnaire" onChange={this.handleChange}>
-        <h2 className="questionnaire__title">{dateFormat(this.props.questionnaireDetails.date, "dddd, mmmm dS, yyyy")}</h2>
-        {this.renderForm()}
-      </form>
-    )
-  }
-}
-
-class Label extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <label className="material-input__label" htmlFor={this.props.htmlFor}>
-        {this.props.textContent}
-      </label>
-    )
-  }
-}
-
-class Input extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: this.props.defaultValue,
-    }
-  }
-
-  handleChange = (e) => {
-    this.setState({value: e.currentTarget.value});
-  }
-
-  render() {
-    return (
-      <input
-        className={!!this.state.value ? 'material-input__input has-value' : 'material-input__input'}
-        onChange={this.handleChange}
-        value={this.state.value}
-        type={this.props.type}
-        name={this.props.name}
-        id={this.props.name}
-      />
-    )
-  }
-}
-
-class Select extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: this.props.defaultValue || '',
-    }
-  }
-
-  handleChange = (e) => {
-    this.setState({value: e.currentTarget.value});
-  }
-
-  render() {
-    return (
-      <select
-        className={!!this.state.value ? 'material-input__select has-value' : 'material-input__select'}
-        onChange={this.handleChange}
-        name={this.props.name}
-        value={this.state.value}
-      >
-
-        <option value=""></option>
-        <option value="hey">hey</option>
-      </select>
-    )
-  }
-}
-
-export default () => { ReactDOM.render(<Questionnaires />, document.getElementById('form')); };
